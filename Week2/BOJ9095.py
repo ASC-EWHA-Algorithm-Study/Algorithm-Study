@@ -3,9 +3,11 @@ import sys
 # 인덱스 에러 어디서?
 
 def solution(number) : 
-    dp = [0] * (12)
+    dp = [0] * (number+1)
     
     dp[1] = 1
+    # dp 크기를 number+1로 설정하면 
+    # 입력된 N이 1인 경우 이 부분에서 indexError가 생길 수 있음 
     dp[2] = 2
     
     for i in range(3, number +1) : 
