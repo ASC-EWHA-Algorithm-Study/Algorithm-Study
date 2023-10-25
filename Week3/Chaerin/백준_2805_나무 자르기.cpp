@@ -1,31 +1,32 @@
 #include <iostream>
-#include <queue>
+#include <algorithm>
 
 using namespace std;
 
 int main()
 {
-    int N,K;
-    queue <int> q;
-    queue <int> ans;
-    cin>>N>>K;
+    long long N,M;
+    cin>>N>>M;
+    int tree[N];
     for(int i=0;i<N;i++){
-        q.push(i+1);
+        cin>>tree[i];
     }
-    while(!q.empty()){
-        for(int i=0;i<K-1;i++){
-            int temp=q.front();
-            q.pop();
-            q.push(temp);
+    sort(tree,tree+N);
+    long long start=0;
+    long long end=tree[N-1];
+    long long result = 0;
+    while(start<=end){
+        long long mid=(start+end)/2;
+        long long amount=0;
+        for(int i=0;i<N;i++){
+            if(tree[i]>mid)amount+=tree[i]-mid;
         }
-        ans.push(q.front());
-        q.pop();
+        if(amount>=M) {
+            start=mid+1;
+            result = mid; 
+        }
+        else end=mid-1;
     }
-    cout<<'<';
-    for(int i=0;i<N-1;i++) {
-        cout<<ans.front()<<", ";
-        ans.pop();
-    }
-    cout<<ans.front()<<'>';
+    cout << result;
     return 0;
 }
