@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <algorithm>
 
@@ -28,6 +27,7 @@ int main()
                         if(arr[i][j-h-1]!=p||used[i][j-h-1]!=0)plus=false;
                         used[i][j-h-1]=1;
                     }
+                    else plus=false;
                 }
             }
             else if(p-n==1){
@@ -36,6 +36,7 @@ int main()
                         if(arr[i][j+h]!=n||used[i][j+h]!=0)plus=false;
                         used[i][j+h]=1;
                     }
+                    else plus=false;
                 }
             }
             p=n;
@@ -56,6 +57,7 @@ int main()
                         if(arr[j-h-1][i]!=p||used2[j-h-1][i]!=0)plus=false;
                         used2[j-h-1][i]=1;
                     }
+                    else plus=false;
                 }
             }
             else if(p-n==1){
@@ -64,6 +66,7 @@ int main()
                         if(arr[j+h][i]!=n||used2[j+h][i]!=0)plus=false;
                         used2[j+h][i]=1;
                     }
+                    else plus=false;
                 }
             }
             if(!plus)break;
