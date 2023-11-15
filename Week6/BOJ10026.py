@@ -23,6 +23,7 @@ def dfs(y, x, color) :
         if 0<=nx<N and 0<=ny<N and visited[ny][nx] == False and colors[ny][nx] == color :
             dfs(ny, nx, color)
 
+"""
 def special_dfs(y, x, color) : 
     visited[y][x] = True
     
@@ -50,4 +51,33 @@ for i in range(N) :
             special_count += 1
             
 print(special_count)
-    
+"""
+
+
+# 그래프를 따로 구현하지 않고, 함께 쓸 수 있는 방법
+# 우선 적록색맹이 아닐 때 영역의 개수를 구한다.
+# R을 G로 바꿔준다.
+# 적록색맹일 때 영역의 개수를 구한다.
+for i in range(N) : 
+    for j in range(N) :
+        if visited[i][j] == False :
+            color = colors[i][j]
+            dfs(i, j, color)
+            count += 1
+print(count)
+
+visited = [[False for i in range(N)] for i in range(N)]
+count =0 
+
+for i in range(N) : 
+    for j in range(N) :
+        if colors[i][j] == "R" : 
+            colors[i][j] = "G"
+     
+for i in range(N) : 
+    for j in range(N) :
+        if visited[i][j] == False :
+            color = colors[i][j]
+            dfs(i, j, color)
+            count += 1
+print(count)
